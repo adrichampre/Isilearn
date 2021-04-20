@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:5432")
+@CrossOrigin(origins = "http://localhost:4200")
 public class LessonController {
 
     private final LessonRepository lessonRepository;
@@ -24,7 +24,7 @@ public class LessonController {
 
     @GetMapping("/lessons")
     public List<Lesson> getLessons() {
-        return (List<Lesson>) lessonRepository.findAll();
+        System.out.println("Lessons"); return (List<Lesson>) lessonRepository.findAll();
     }
 
     /**

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class Word implements Serializable {
@@ -19,23 +20,34 @@ public class Word implements Serializable {
 
     private String word;
     private String translatedWord;
+    private String tryTranslate = null;
 
     public Word(){
         this.id=++count;
         this.word = "";
         this.translatedWord = "";
+        this.tryTranslate = "";
     }
 
     public Word(String word) {
         this.id=++count;
         this.word = word;
         this.translatedWord = "";
+        this.tryTranslate = "";
     }
 
     public Word(String word, String translatedWord) {
         this.id=++count;
         this.word = word;
         this.translatedWord = translatedWord;
+        this.tryTranslate = "";
+    }
+
+    public Word(String word, String translatedWord, String tryTranslate) {
+        this.id=++count;
+        this.word = word;
+        this.translatedWord = translatedWord;
+        this.tryTranslate = tryTranslate;
     }
 
     public String getWord() {
@@ -54,8 +66,13 @@ public class Word implements Serializable {
         this.translatedWord = translatedWord;
     }
 
+    public void setTryTranslate(String word) { this.tryTranslate = word;}
+
+    public String getTryTranslate() { return this.tryTranslate;}
+
     @Override
     public String toString(){
         return "Word "+id+" { " + word + " = " + translatedWord + " }";
     }
+
 }

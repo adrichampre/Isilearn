@@ -3,7 +3,9 @@ package com.isilearn.metier;
 import com.isilearn.model.Lesson;
 import com.isilearn.model.Word;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Practice {
@@ -11,6 +13,7 @@ public class Practice {
     private final Lesson lesson;
     private Map<Word, Boolean> successPerWord;
     private Map<Word, String> missedTranslation;
+    private List<Word> wordTranslated;
     private int score;
     private int cur;
 
@@ -23,6 +26,7 @@ public class Practice {
         for (Word word: lesson.getWordList()) {
             successPerWord.put(word, false);
         }
+        wordTranslated = new ArrayList<>();
     }
 
     /**
@@ -31,10 +35,8 @@ public class Practice {
      *         null sinon
      */
     public Word getNextWord(){
-        cur++;
-        if (cur >= lesson.size())
-            return null;
-        return lesson.get(cur);
+        Word word = lesson.get(cur);
+        return word;
     }
 
 
@@ -46,14 +48,18 @@ public class Practice {
      */
     public boolean tryTranslate(String translation) {
         Word tested = lesson.get(cur);
-
-        if (tested.getTranslatedWord().equals(translation)) {
+        cur++;
+        System.out.println(cur);
+        if (tested.getTranslatedWord().toLowerCase().equals(translation.toLowerCase())) {
             score++;
             successPerWord.put(tested, true);
             return true;
         }
-        else
+        else {
+            tested.setTryTranslate(translation);
+            wordTranslated.add(tested);
             missedTranslation.put(tested, translation);
+        }
         return false;
     }
 
@@ -77,4 +83,8 @@ public class Practice {
         return cur;
     }
 
+    public List<Word> getResultMissed()
+    {
+        return wordTranslated;
+    }
 }

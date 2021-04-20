@@ -55,6 +55,20 @@ public class Application {
             lesson.addWord(word4);
 
             lessonRepository.save(lesson);
+
+
+            word = new Word("Oui", "Si");
+            word1 = new Word("Non", "No");
+            word2 = new Word("Bonjour", "Hola");
+            word4 = new Word("Merci", "Gracias");
+            lesson = new Lesson("Espagnol basique");
+            lesson.addWord(word);
+            lesson.addWord(word1);
+            lesson.addWord(word2);
+            lesson.addWord(word3);
+            lesson.addWord(word4);
+
+            lessonRepository.save(lesson);
             lessonRepository.findAll().forEach(System.out::println);
         };
     }

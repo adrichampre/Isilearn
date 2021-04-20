@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Lesson implements Serializable {
@@ -29,7 +30,7 @@ public class Lesson implements Serializable {
     private ArrayList<Word> wordList;
 
     public Lesson() {
-        this.id=++count;
+        //this.id=++count;
         this.name = "";
         this.wordList = new ArrayList<>();
     }
@@ -63,6 +64,8 @@ public class Lesson implements Serializable {
     }
 
     public Word get(int index){
+        if(index >= wordList.size())
+            return null;
         return wordList.get(index);
     }
 

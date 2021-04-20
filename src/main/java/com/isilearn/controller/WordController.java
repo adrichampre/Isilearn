@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:5432")
+@CrossOrigin(origins = "http://localhost:4200")
 public class WordController {
 
     private final WordRepository wordRepository;
